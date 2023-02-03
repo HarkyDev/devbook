@@ -9,6 +9,7 @@ import morgan from "morgan"
 import path from "path"
 import { fileURLToPath } from "url"
 import { ppid } from "process"
+import {register} from "./controllers/auth.js"
 
 /*config */
 
@@ -36,6 +37,12 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage })
 
+
+// Routes with files 
+app.post("/auth/register", upload.single("picture"), register);
+
+
+
 // db set 
 const PORT = process.env.PORT || 6001;
 mongoose.connect(process.env.MONGO_URL,
@@ -47,3 +54,6 @@ mongoose.connect(process.env.MONGO_URL,
             console.log(`Server Port: ${PORT}`)
         );
     }).catch((error)=>console.log(`${error} did not connect`))
+
+
+     
