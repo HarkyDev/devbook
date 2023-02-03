@@ -10,8 +10,11 @@ import path from "path"
 import { fileURLToPath } from "url"
 import { ppid } from "process"
 import {register} from "./controllers/auth.js"
+import {createPost} from "./controllers/posts.js"
 import authRoutes from "./routes/auth.js"
-import userRoutes from ".routes/users.js"
+import userRoutes from "./routes/users.js"
+import postsRoutes from "./routes/posts.js"
+import { verifyToken } from "./middleware/auth.js"
 
 /*config */
 
@@ -43,10 +46,12 @@ const upload = multer({ storage })
 
 // Routes with files 
 app.post("/auth/register", upload.single("picture"), register);
+app.post ("/posts", verifyToken , upload.single("picture"), createPost)
 
 //Routes
 app.use("/auth" , authRoutes)
-app.user("/users". userRoutes)
+app.use("/users", userRoutes)
+app.use("posts" , postsRoutes)
 
 
 
