@@ -1,5 +1,6 @@
 import React from 'react'
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material"
+import Form from "../../components/loginForm/index.jsx"
 
 function Login() {
 
@@ -27,11 +28,11 @@ const isNonMobileScreens = useMediaQuery("(mid-width: 1000px)");
         backgroundColor={theme.palette.background.alt}
       >
         <Typography fontWeight="500" variant="h5" sx={{ mb: "1.5rem" }}>
-          devbook: A home for developers
+          Devbook: A home for developers
         </Typography>
+        <Form />
       </Box>
     </Box>
   )
 }
-
 export default Login
